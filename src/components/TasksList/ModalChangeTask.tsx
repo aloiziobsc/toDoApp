@@ -1,7 +1,6 @@
 import { Box, Button, Card, Modal, TextField } from '@mui/material';
 import { useContext, useState } from 'react';
 import './taskList.scss'
-import { Task } from '../../context/ContextTypes';
 import { AppContext } from '../../context/AppContext';
 
 const ModalChangeTask = ({ open, onClose, modifyTask }:any) => {
@@ -27,7 +26,7 @@ const ModalChangeTask = ({ open, onClose, modifyTask }:any) => {
     <Modal open={open} onClose={onClose} id="Modal">
       <Card style={{padding:'10px'}}>
       <div>
-        <h2>Editar Tarefa</h2>
+        <h2 id="title">Editar Tarefa:</h2>
         <form>
           <TextField
             label="Título"

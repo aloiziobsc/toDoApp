@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import dayjs from 'dayjs'
 import ModalChangeTask from './ModalChangeTask';
+import StatusColor from './StatusColor';
 
 function TaskCard(props:Task) {
   const { tasks, changeTasks} = useContext(AppContext)
@@ -52,56 +53,67 @@ function TaskCard(props:Task) {
 
   return (
     <>
-      <Grid item  direction="column" container id={propsTask.id}>
-        <Card id='Card'>
+    <Box sx={{ s: 1 }} />
+      <Grid item  direction="column" container>
+        <Card id='card'>
           <CardContent>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6">
               {propsTask.title}
             </Typography>
-            <Typography variant="body1" gutterBottom>
-              {propsTask.description}
-            </Typography>
+            <Box sx={{ m: 1 }} />
 
-            <Box display="block" justifyContent="space-evenly">
-              <Box display="flex" justifyContent="space-around">
-                <Typography variant="caption">
-                  cadastro: {dayjs(propsTask.date).format('DD/MM/YYYY HH:mm:ss')}
+            <Box display="block">
+              <Box display="flex" justifyContent="space-between">
+                <Typography variant="body1" >
+                  {propsTask.description}
                 </Typography>
-                <Typography variant="caption">
-                  status: {propsTask.status}
-                </Typography>
+                <Box id="statusContainer">
+                  <Box display="flex" justifyContent="center">
+                    <Typography variant="caption">
+                    {propsTask.status.toString()}
+                    </Typography>
+                    <StatusColor status={propsTask.status}/>
+                  </Box>
+                  <Box sx={{ m: 2 }} />
+                  <FormControl>
+                    <InputLabel>Alterar</InputLabel>
+                    <Select
+                      value={propsTask.status}
+                      label="Status"
+                      onChange={(e)=> handleEditStatus(e.target.value as StatusOptions)}
+                    >
+                      <MenuItem value={StatusOptions.Pending}>Pendente</MenuItem>
+                      <MenuItem value={StatusOptions.Doing}>Em andamento</MenuItem>
+                      <MenuItem value={StatusOptions.Finish}>Concluída</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>  
               </Box>
-              <FormControl>
-                <InputLabel>Selecionar Status</InputLabel>
-                <Select
-                  value={propsTask.status}
-                  label="Status"
-                  onChange={(e)=> handleEditStatus(e.target.value as StatusOptions)}
-                >
-                  <MenuItem value={StatusOptions.Pending}>Pendente</MenuItem>
-                  <MenuItem value={StatusOptions.Doing}>Em andamento</MenuItem>
-                  <MenuItem value={StatusOptions.Finish}>Concluída</MenuItem>
-                </Select>
-              </FormControl>
             </Box>
           </CardContent>
-          <CardActions>
-            <IconButton
-              onClick={deleteTask}
-            >
-              <DeleteIcon />
-            </IconButton>
-            <IconButton
-            onClick={handleOpen}
-            >
-              <EditIcon />
-            </IconButton>
+          <Box display={'flex'} justifyContent={'space-between'}>
+            <Typography variant="caption" id="date">
+              {dayjs(propsTask.date).format('DD/MM/YYYY (HH:mm:ss)')}
+            </Typography>
+            <Box display={'flex'} justifyContent={'space-around'}>
+              <IconButton
+                onClick={deleteTask}
+              >
+                <DeleteIcon />
+              </IconButton>
+              <IconButton
+              onClick={handleOpen}
+              >
+                <EditIcon />
+              </IconButton>
+            </Box>
+
             <ModalChangeTask
               open={openModal}
               onClose={handleClose}
               modifyTask={propsTask}
             />
-          </CardActions>
+          </Box>
         </Card>
       </Grid>
     </>

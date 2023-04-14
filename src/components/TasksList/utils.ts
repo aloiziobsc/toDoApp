@@ -1,5 +1,4 @@
 import { createFilterOptions } from "@mui/material";
-import { StatusOptions } from "../../context/ContextTypes";
 
 export const statusOptions = ['Pendente', 'Em andamento', 'Concluída']
 
@@ -8,10 +7,9 @@ export const filterOptions = createFilterOptions({
   stringify: (option: string) => option,
 });
 
-export function correspondingValueInStatusOption (name:string,
-  currentStatus:StatusOptions):StatusOptions {
-  if(name === 'Pendente') return StatusOptions.Pending
-  if(name === 'Em andamento') return StatusOptions.Doing
-  if(name === 'Concluída') return StatusOptions.Finish
-  else return currentStatus
+export function returnStatusColor (currentStatus:string):string {
+  if(currentStatus === 'Pendente') return '#FFB347'
+  if(currentStatus === 'Em andamento') return '#00acee'
+  if(currentStatus === 'Concluída') return '#029944'
+  else return '#D3D3D3'
 }

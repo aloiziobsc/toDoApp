@@ -49,9 +49,12 @@ function Register() {
 
   return (
     <>
-      <Typography variant="h3" id="Box">Cadastrar</Typography>
-      <Box id="RegisterBox">
+      <Box sx={{ m: 2 }} />
+      <Typography variant="h4" id="title">Cadastrar:</Typography>
+      <Box sx={{ m: 1 }} />
+      <Box>
         <TextField
+          id="textfieldSearch"
           label="Tarefa"
           variant="outlined"
           value={newTaskTitle}
@@ -60,8 +63,10 @@ function Register() {
           type='text'
         />
       </Box>
-      <Box id="RegisterBox">
+      <Box sx={{ m: 1 }} />
+      <Box>
         <TextField
+          id="textfieldSearch"
           label="Descrição"
           multiline
           rows={4}
@@ -71,7 +76,8 @@ function Register() {
           type='text'
         />
       </Box>
-      <Box id="RegisterBox">
+      <Box sx={{ m: 1 }} />
+      <Box>
         <Button
           startIcon={<AddIcon />}
           variant="contained"
@@ -81,6 +87,7 @@ function Register() {
           Adicionar tarefa
         </Button>
       </Box>
+      <Box sx={{ m: 5 }} />
     </>
   )
 }

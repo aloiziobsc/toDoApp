@@ -5,7 +5,7 @@ import { AppContextProps, Task } from "./ContextTypes";
 const Provider = ({ children }: AppContextProps) => {
   const [tasks, setTasks] = useState(initialValue.tasks);
   const changeTasks = (newTasks:Array<Task>) => {
-    const orderTasks = newTasks.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    const orderTasks = newTasks.sort((b, a) => new Date(a.date).getTime() - new Date(b.date).getTime())
     setTasks(orderTasks)
     window.localStorage.setItem('tasks', JSON.stringify(orderTasks));
   }
