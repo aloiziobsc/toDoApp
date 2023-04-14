@@ -1,6 +1,5 @@
 import { ReactNode } from "react"
 
-
 export enum StatusOptions {
   Pending = 'Pendente',
   Doing = 'Em andamento',

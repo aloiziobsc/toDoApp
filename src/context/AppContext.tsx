@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { AppContextType, Task } from './ContextTypes';
+import { AppContextType } from './ContextTypes';
 
 export const initialValue:AppContextType = {
   tasks: [],
